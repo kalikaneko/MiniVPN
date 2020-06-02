@@ -1,8 +1,37 @@
-CONFIG += qt staticlib console
-unix:CONFIG += debug
+CONFIG += qt staticlib
+DEBUG:CONFIG += console
+unix:DEBUG:CONFIG += debug
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 
+# trying to optimize size of the static binary.
+# probably more can be shaved off with some patience
+# You need to recompile your version of Qt to use the libraries you want. The
+# information comes from the build configuration of the Qt version that you are
+# using. Simply point Qts configure to the relevant libraries you wish to
+# override, build it, and use it to build your project. It will automatically
+# pull in the newer libraries that you overrode.
+# TODO: patch the $(PKG)_BUILD definition in mxe/src/qtbase.mk and shave some options there.
+
+QTPLUGIN.imageformats = -
+QTPLUGIN.QTcpServerConnectionFactory =-
+QTPLUGIN.QQmlDebugServerFactory =-
+QTPLUGIN.QWindowsIntegrationPlugin =-
+QTPLUGIN.QQmlDebuggerServiceFactory =-
+QTPLUGIN.QQmlInspectorServiceFactory =-
+QTPLUGIN.QLocalClientConnectionFactory =-
+QTPLUGIN.QDebugMessageServiceFactory =-
+QTPLUGIN.QQmlNativeDebugConnectorFactory =-
+QTPLUGIN.QQmlNativeDebugServiceFactory =-
+QTPLUGIN.QQmlPreviewServiceFactory =-
+QTPLUGIN.QQmlProfilerServiceFactory =-
+QTPLUGIN.QQuickProfilerAdapterFactory =-
+QTPLUGIN.QQmlDebugServerFactory =-
+QTPLUGIN.QTcpServerConnectionFactory =-
+QTPLUGIN.QGenericEnginePlugin =-
+
 QT += qml quick
+
+TARGET=minivpn
 
 SOURCES += \
     gui/main.cpp \
@@ -16,12 +45,7 @@ HEADERS += \
     gui/qjsonmodel.h \
     lib/libgoshim.h
 
-
-TARGET=minivpn
 LIBS += -L./lib -lgoshim -lpthread
-
-DISTFILES += \
-    README.md
 
 DESTDIR = release
 DESTDIR = release
@@ -42,3 +66,6 @@ Debug:OBJECTS_DIR = debug/.obj
 Debug:MOC_DIR = debug/.moc
 Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
+
+DISTFILES += \
+    README.md
