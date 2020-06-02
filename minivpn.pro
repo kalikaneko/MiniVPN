@@ -1,21 +1,20 @@
 CONFIG += qt staticlib console
-# TODO remove this in cross build?
 unix:CONFIG += debug
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 
 QT += qml quick
 
 SOURCES += \
-    src/main.cpp \
-    src/qjsonmodel.cpp \
-    src/handlers.cpp
+    gui/main.cpp \
+    gui/qjsonmodel.cpp \
+    gui/handlers.cpp
 
-RESOURCES += src/qml.qrc
+RESOURCES += gui/qml.qrc
 
 HEADERS += \
-    src/handlers.h \
-    src/qjsonmodel.h \
-    lib/libgoshim.h
+    gui/handlers.h \
+    gui/qjsonmodel.h \
+    gui/libgoshim.h
 
 
 TARGET=minivpn
