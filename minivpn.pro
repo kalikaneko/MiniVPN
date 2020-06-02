@@ -1,4 +1,4 @@
-CONFIG += qt staticlib
+CONFIG += qt staticlib console
 # TODO remove this in cross build?
 unix:CONFIG += debug
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
