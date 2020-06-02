@@ -55,7 +55,16 @@ void onStatusChanged() {
     free(ctx);
 }
 
+std::string getEnv(std::string const& key)
+{
+    char const* val = getenv(key.c_str());
+    return val == NULL ? std::string() : std::string(val);
+}
+
 int main(int argc, char **argv) {
+
+    bool debugQml = getEnv("DEBUG_QML_DATA") == "yes";
+
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
     QQmlContext *ctx = engine.rootContext();
@@ -71,6 +80,8 @@ int main(int argc, char **argv) {
 
     /* set the json model, load the qml */
     ctx->setContextProperty("jsonModel", model);
+    ctx->setContextProperty("debugModel", debugQml);
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     /* connect the jsonChanged signal explicitely.

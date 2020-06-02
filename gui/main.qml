@@ -41,36 +41,19 @@ Window {
         onClicked: backend.switchOff()
     }
 
-    /*
-    TreeView {
-        id: treeView
-        model: jsonModel
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        TableViewColumn {
-            id: keyCol
-            title: "key"
-            role: "key"
-        }
-
-        TableViewColumn {
-            id: valueCol
-            title: "value"
-            role: "value"
-            movable: true
-            width: treeView.viewport.width - keyCol.width
-        }
-    }  
-    */
+    Loader {
+        id: treeview
+        x: 0
+        y: 120
+    }
 
     Component.onCompleted: {
-        console.log("qml initialization complete");
+        treeview.source = debugModel ? "debug.qml" : "";
+        console.log("qml initialization completed");
     }
 
     Connections {
         target: jsonModel
-
         onDataChanged: {
             ctx = JSON.parse(jsonModel.getJson());
         }
