@@ -283,8 +283,6 @@ bool QJsonModel::setData(const QModelIndex &index, const QVariant &value, int ro
     return false;
 }
 
-
-
 QVariant QJsonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole)
@@ -405,7 +403,6 @@ QJsonValue  QJsonModel::genJson(QJsonTreeItem * item) const
         QJsonValue va(item->value());
         return va;
     }
-
 }
 
 QHash<int, QByteArray> QJsonModel::roleNames() const
@@ -414,4 +411,9 @@ QHash<int, QByteArray> QJsonModel::roleNames() const
     roles[Roles::KeyRole] = "key";
     roles[Roles::ValueRole] = "value";
     return roles;
+}
+
+QByteArray QJsonModel::getJson()
+{
+    return ((QJsonDocument)(this->json())).toJson();
 }

@@ -97,7 +97,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
     QJsonDocument json() const;
     QHash<int, QByteArray> roleNames() const Q_DECL_OVERRIDE;
-    void refresh();
+    Q_INVOKABLE QByteArray getJson();
 
 private:
     QJsonValue genJson(QJsonTreeItem *) const;

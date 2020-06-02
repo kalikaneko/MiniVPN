@@ -7,6 +7,8 @@ Window {
     width: 360
     height: 360
 
+    property var ctx
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -52,4 +54,22 @@ Window {
             width: treeView.viewport.width - keyCol.width
         }
     }  
+
+    Text {
+        x: 300
+        y: 300
+        text: ctx.status
+    }
+
+    Component.onCompleted: {
+        console.log("qml initialization complete");
+    }
+
+    Connections {
+        target: jsonModel
+
+        onDataChanged: {
+            ctx = JSON.parse(jsonModel.getJson());
+        }
+    }
 }
