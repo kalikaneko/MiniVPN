@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
     SubscribeToEvent(statusChangedEvt, (void *)onStatusChanged);
 
     /* let the Go side initialize its internal state */
-    InitializeContext();
+    InitializeBitmaskContext();
 
     /* kick off your shoes, put your feet up */
     return app.exec();

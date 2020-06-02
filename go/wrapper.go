@@ -305,8 +305,8 @@ func SubscribeToEvent(event string, f unsafe.Pointer) {
 	subscribe(event, f)
 }
 
-//export InitializeContext
-func InitializeContext() {
+//export InitializeBitmaskContext
+func InitializeBitmaskContext() {
 	provider := "black.riseup.net"
 	appName := "RiseupVPN"
 	initOnce.Do(func() {
