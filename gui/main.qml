@@ -4,22 +4,29 @@ import QtQuick.Controls 1.4
 
 Window {
     visible: true
-    width: 360
-    height: 360
+    width: 200
+    height: 200
 
     property var ctx
-
+    
     MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
+	anchors.fill: parent
+	onClicked: {
+	    Qt.quit();
+	}
+    }
+
+    Text {
+        x: 20
+        y: 20
+        font.pixelSize: 40
+        text: ctx ? ctx.status : ""
     }
 
     Button {
         id: onBtn
-        x: 80
-        y: 200
+        x: 20
+        y: 80
         text: qsTr("on")
 
         onClicked: backend.switchOn()
@@ -27,13 +34,14 @@ Window {
 
     Button {
         id: offBtn
-        x: 180
-        y: 200
+        x: 80
+        y: 80
         text: qsTr("off")
 
         onClicked: backend.switchOff()
     }
 
+    /*
     TreeView {
         id: treeView
         model: jsonModel
@@ -54,12 +62,7 @@ Window {
             width: treeView.viewport.width - keyCol.width
         }
     }  
-
-    Text {
-        x: 300
-        y: 300
-        text: ctx.status
-    }
+    */
 
     Component.onCompleted: {
         console.log("qml initialization complete");
