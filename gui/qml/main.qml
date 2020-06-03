@@ -4,9 +4,8 @@ import QtQuick.Extras 1.2
 import QtQuick.Controls 1.4
 
 ApplicationWindow {
-    //visible: debugModel
-    visible: true
     id: app
+    visible: debugModel
     width: 200
     height: 200
 
@@ -57,9 +56,9 @@ ApplicationWindow {
 
     Component.onCompleted: {
         systray.source = "systray.qml"
-        //treeview.source = debugModel ? "debug.qml" : "";
+        treeview.source = debugModel ? "debug.qml" : "";
         console.log("qml initialization completed");
-        appName = "RiseupVPN"; // XXX get it from ctx
+        appName = "RiseupVPN"; // TODO get it from ctx
     }
 
     Connections {

@@ -10,24 +10,12 @@ SystemTrayIcon {
     id: systray
     visible: true
     onActivated: menu.open()
-    icon: StandardIcon.Critical
 
     Component.onCompleted: {
         icon.source = "qrc:/assets/vpn-off.png"
         tooltip = qsTr("Checking status...")
+        console.debug("systray init completed")
         show();
-        console.debug("systray init completed, should show")
-
-        // XXX
-        app.show()
-
-        /*
-        if(application.visibility === Window.Hidden) {
-            application.show()
-        } else {
-            application.hide()
-        }
-        */
     }
 
     menu: Menu {
