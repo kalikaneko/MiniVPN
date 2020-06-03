@@ -26,10 +26,14 @@ class Backend : public QObject {
 public:
     explicit Backend(QObject *parent = 0);
 
+signals:
+    void quitDone();
+
 public slots:
     void switchOn();
     void switchOff();
     void unblock();
+    void quit();
 };
 
 #endif  // HANDLERS_H

@@ -11,6 +11,7 @@ lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 # override, build it, and use it to build your project. It will automatically
 # pull in the newer libraries that you overrode.
 # TODO: patch the $(PKG)_BUILD definition in mxe/src/qtbase.mk and shave some options there.
+# https://stackoverflow.com/questions/5587141/recommended-flags-for-a-minimalistic-qt-build
 
 QTPLUGIN.imageformats = -
 QTPLUGIN.QTcpServerConnectionFactory =-
@@ -38,7 +39,7 @@ SOURCES += \
     gui/qjsonmodel.cpp \
     gui/handlers.cpp
 
-RESOURCES += gui/qml.qrc
+RESOURCES += gui/gui.qrc
 
 HEADERS += \
     gui/handlers.h \

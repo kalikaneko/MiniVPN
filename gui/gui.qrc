@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/systray.qml</file>
+        <file>qml/debug.qml</file>
+        <file>assets/vpn-blocked.svg</file>
+        <file>assets/vpn-off.svg</file>
+        <file>assets/vpn-on.svg</file>
+        <file>assets/vpn-wait.svg</file>
+    </qresource>
+</RCC>

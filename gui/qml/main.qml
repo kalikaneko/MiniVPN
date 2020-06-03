@@ -3,11 +3,12 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 
 Window {
-    visible: true
+    visible: debugModel
     width: 200
     height: 200
 
-    property var ctx
+    property var     ctx
+    property string  appName
     
     MouseArea {
 	anchors.fill: parent
@@ -47,9 +48,15 @@ Window {
         y: 120
     }
 
+    Loader {
+        id: systray
+        source: "systray.qml"
+    }
+
     Component.onCompleted: {
         treeview.source = debugModel ? "debug.qml" : "";
         console.log("qml initialization completed");
+        appName = "RiseupVPN"; // XXX get it from ctx
     }
 
     Connections {

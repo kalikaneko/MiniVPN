@@ -295,6 +295,14 @@ func SwitchOff() {
 	stopVPN()
 }
 
+//export Quit
+func Quit() {
+	if ctx.Status != off {
+		setStatus(stopping)
+		stopVPN()
+	}
+}
+
 //export Unblock
 func Unblock() {
 	fmt.Println("unblock... [not implemented]")

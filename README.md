@@ -16,9 +16,16 @@ XBUILD=win64 ./build.sh
 
 You should see the binary in `release/MinimalQml.exe`.
 
+Dependencies
+------------------
+besides the basic qt5 libraries, the following packages are needed:
+
+* qml-module-qt-labs-platform
+
 TODO
 ------------------
 
+* [ ] check status of qt-labs-platform in mxe
 * [ ] provide Vagrantfile (or Dockerfile) with mxe toolchain pre-installed.
 * [ ] document quirks on complation of the toolchain
 * [ ] explore qtquick deployment "the qt way" 

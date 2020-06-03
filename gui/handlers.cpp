@@ -1,3 +1,4 @@
+#include <QTimer>
 #include <QDebug>
 
 #include "handlers.h"
@@ -20,4 +21,10 @@ void Backend::switchOff()
 void Backend::unblock()
 {
     Unblock();
+}
+
+void Backend::quit()
+{
+    Quit();
+    emit this->quitDone();
 }

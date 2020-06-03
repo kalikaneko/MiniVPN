@@ -82,13 +82,18 @@ int main(int argc, char **argv) {
     ctx->setContextProperty("jsonModel", model);
     ctx->setContextProperty("debugModel", debugQml);
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     /* connect the jsonChanged signal explicitely.
         In the lambda, we reload the json in the model every time we receive an
         update from Go */
     QObject::connect(qw, &QJsonWatch::jsonChanged, [ctx, model](QString js) {
         model->loadJson(js.toUtf8());
+    });
+
+    /* connect quitDone signal, exit app */
+    QObject::connect(&backend, &Backend::quitDone, []() {
+            QGuiApplication::quit();
     });
 
     /* register statusChanged callback with CGO */
