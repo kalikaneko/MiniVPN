@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.3
+//import QSystemTrayIcon 1.0
 import Qt.labs.platform 1.1
 
 SystemTrayIcon {
@@ -8,8 +9,19 @@ SystemTrayIcon {
     visible: true
     onActivated: menu.open()
 
-    icon.source: "qrc:/assets/vpn-off.svg"
-    tooltip: qsTr("Checking status...")
+    Component.onCompleted: {
+        icon.source = "qrc:/assets/vpn-off.svg"
+        tooltip = qsTr("Checking status...")
+        show();
+
+        /*
+        if(application.visibility === Window.Hidden) {
+            application.show()
+        } else {
+            application.hide()
+        }
+        */
+    }
 
     menu: Menu {
         StateGroup {
