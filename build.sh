@@ -52,4 +52,4 @@ echo "[+] Building minimal qml example..."
 buildGoLib
 buildQmake
 make clean
-make all
+make -j4 all

@@ -65,6 +65,7 @@ int main(int argc, char **argv) {
 
     bool debugQml = getEnv("DEBUG_QML_DATA") == "yes";
 
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
     QQmlApplicationEngine engine;

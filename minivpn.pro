@@ -1,5 +1,5 @@
 CONFIG += qt staticlib
-DEBUG:CONFIG += console
+windows:CONFIG += console
 unix:DEBUG:CONFIG += debug
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 
@@ -14,7 +14,7 @@ lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 # https://stackoverflow.com/questions/5587141/recommended-flags-for-a-minimalistic-qt-build
 # See also: https://qtlite.com/
 
-QTPLUGIN.imageformats = -
+#QTPLUGIN.imageformats = -
 QTPLUGIN.QTcpServerConnectionFactory =-
 QTPLUGIN.QQmlDebugServerFactory =-
 QTPLUGIN.QWindowsIntegrationPlugin =-
