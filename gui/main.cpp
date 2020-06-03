@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
 
     /* set the json model, load the qml */
     ctx->setContextProperty("jsonModel", model);
-    ctx->setContextProperty("debugModel", debugQml);
+    ctx->setContextProperty("debugQml", debugQml);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
