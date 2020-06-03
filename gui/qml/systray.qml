@@ -3,8 +3,6 @@ import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Extras 1.2
 import QtQuick.Window 2.0
-//import QSystemTrayIcon 1.0
-
 import Qt.labs.platform 1.1
 
 SystemTrayIcon {
@@ -15,9 +13,13 @@ SystemTrayIcon {
     icon: StandardIcon.Critical
 
     Component.onCompleted: {
-        icon.source = "qrc:/assets/vpn-off.svg"
+        icon.source = "qrc:/assets/vpn-off.png"
         tooltip = qsTr("Checking status...")
         show();
+        console.debug("systray init completed, should show")
+
+        // XXX
+        app.show()
 
         /*
         if(application.visibility === Window.Hidden) {
@@ -36,7 +38,7 @@ SystemTrayIcon {
                 State { name: "initializing" },
                 State {
                     name: "off"
-                    PropertyChanges { target: systray; tooltip: qsTr(appName + " off"); icon.source: "qrc:/assets/vpn-off.svg" }
+                    PropertyChanges { target: systray; tooltip: qsTr(appName + " off"); icon.source: "qrc:/assets/vpn-off.png" }
                     PropertyChanges { target: statusItem; text: qsTr(appName + " off") }
                 },
                 State {

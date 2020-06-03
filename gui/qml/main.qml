@@ -1,9 +1,12 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
+import QtQuick.Extras 1.2
 import QtQuick.Controls 1.4
 
-Window {
-    visible: debugModel
+ApplicationWindow {
+    //visible: debugModel
+    visible: true
+    id: app
     width: 200
     height: 200
 

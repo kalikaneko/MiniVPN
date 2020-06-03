@@ -15,21 +15,21 @@ lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 # See also: https://qtlite.com/
 
 #QTPLUGIN.imageformats = -
-QTPLUGIN.QTcpServerConnectionFactory =-
-QTPLUGIN.QQmlDebugServerFactory =-
-QTPLUGIN.QWindowsIntegrationPlugin =-
-QTPLUGIN.QQmlDebuggerServiceFactory =-
-QTPLUGIN.QQmlInspectorServiceFactory =-
-QTPLUGIN.QLocalClientConnectionFactory =-
-QTPLUGIN.QDebugMessageServiceFactory =-
-QTPLUGIN.QQmlNativeDebugConnectorFactory =-
-QTPLUGIN.QQmlNativeDebugServiceFactory =-
-QTPLUGIN.QQmlPreviewServiceFactory =-
-QTPLUGIN.QQmlProfilerServiceFactory =-
-QTPLUGIN.QQuickProfilerAdapterFactory =-
-QTPLUGIN.QQmlDebugServerFactory =-
-QTPLUGIN.QTcpServerConnectionFactory =-
-QTPLUGIN.QGenericEnginePlugin =-
+#QTPLUGIN.QTcpServerConnectionFactory =-
+#QTPLUGIN.QQmlDebugServerFactory =-
+#QTPLUGIN.QWindowsIntegrationPlugin =-
+#QTPLUGIN.QQmlDebuggerServiceFactory =-
+#QTPLUGIN.QQmlInspectorServiceFactory =-
+#QTPLUGIN.QLocalClientConnectionFactory =-
+#QTPLUGIN.QDebugMessageServiceFactory =-
+#QTPLUGIN.QQmlNativeDebugConnectorFactory =-
+#QTPLUGIN.QQmlNativeDebugServiceFactory =-
+#QTPLUGIN.QQmlPreviewServiceFactory =-
+#QTPLUGIN.QQmlProfilerServiceFactory =-
+#QTPLUGIN.QQuickProfilerAdapterFactory =-
+#QTPLUGIN.QQmlDebugServerFactory =-
+#QTPLUGIN.QTcpServerConnectionFactory =-
+#QTPLUGIN.QGenericEnginePlugin =-
 
 QT += qml quick
 
@@ -49,7 +49,6 @@ HEADERS += \
 
 LIBS += -L./lib -lgoshim -lpthread
 
-DESTDIR = release
 DESTDIR = release
 OBJECTS_DIR = release/.obj
 MOC_DIR = release/.moc
