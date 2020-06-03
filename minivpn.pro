@@ -12,6 +12,7 @@ lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 # pull in the newer libraries that you overrode.
 # TODO: patch the $(PKG)_BUILD definition in mxe/src/qtbase.mk and shave some options there.
 # https://stackoverflow.com/questions/5587141/recommended-flags-for-a-minimalistic-qt-build
+# See also: https://qtlite.com/
 
 QTPLUGIN.imageformats = -
 QTPLUGIN.QTcpServerConnectionFactory =-

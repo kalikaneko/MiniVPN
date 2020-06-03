@@ -1,6 +1,10 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.3
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Dialogs 1.2
+import QtQuick.Extras 1.2
+import QtQuick.Window 2.0
 //import QSystemTrayIcon 1.0
+
 import Qt.labs.platform 1.1
 
 SystemTrayIcon {
@@ -8,6 +12,7 @@ SystemTrayIcon {
     id: systray
     visible: true
     onActivated: menu.open()
+    icon: StandardIcon.Critical
 
     Component.onCompleted: {
         icon.source = "qrc:/assets/vpn-off.svg"
