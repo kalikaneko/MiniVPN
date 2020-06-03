@@ -50,11 +50,11 @@ Window {
 
     Loader {
         id: systray
-        source: "systray.qml"
     }
 
     Component.onCompleted: {
-        treeview.source = debugModel ? "debug.qml" : "";
+        systray.source: "systray.qml"
+        //treeview.source = debugModel ? "debug.qml" : "";
         console.log("qml initialization completed");
         appName = "RiseupVPN"; // XXX get it from ctx
     }
