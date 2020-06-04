@@ -44,12 +44,13 @@ function buildGoLib {
 function buildQmake {
     echo "[+] Now building Qml app with Qt qmake"
     echo ">> using qmake:" $QMAKE
-    $QMAKE -o Makefile "CONFIG-=debug CONFIG+=release" $PROJECT
+    mkdir -p qtbuild
+    $QMAKE -o qtbuild/Makefile "CONFIG-=debug CONFIG+=release" $PROJECT
 }
 
 echo "[+] Building minimal qml example..."
 
 buildGoLib
 buildQmake
-make clean
-make -j4 all
+make -C qtbuild clean
+make -C qtbuild -j4 all
