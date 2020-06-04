@@ -10,28 +10,12 @@ ApplicationWindow {
     visible: false
 
     property var     ctx
-    property string  appName
 
     Connections {
         target: jsonModel
         onDataChanged: {
             ctx = JSON.parse(jsonModel.getJson());
         }
-    }
-
-    property var icons: {
-        "off":     "qrc:/assets/icon/png/black/vpn_off.png",
-        "on":      "qrc:/assets/icon/png/black/vpn_on.png",
-        "wait":    "qrc:/assets/icon/png/black/vpn_wait_0.png",
-        "blocked": "qrc:/assets/icon/png/black/vpn_blocked.png",
-    }
-
-    property var toHuman: {
-        "off":        qsTr(appName + " off", appName), // TODO improve string interpolation, give context to translators etc
-        "on":         qsTr(appName + " on"),
-        "connecting": qsTr("Connecting to " + appName),
-        "stopping":   qsTr("Stopping " + appName),
-        "failed":     qsTr(appName + " blocking internet"), // TODO failed is not handed yet
     }
 
     Component.onCompleted: {
@@ -44,12 +28,36 @@ ApplicationWindow {
         hide();
     }
 
+    function toHuman(st) {
+        switch(st) {
+            case "off":
+                // TODO improve string interpolation, give context to translators etc
+                return qsTr(ctx.appName + " off");
+            case "on":
+                return qsTr(ctx.appName + " on");
+            case "connecting":
+                return qsTr("Connecting to " + ctx.appName);
+            case "stopping":
+                return qsTr("Stopping " + ctx.appName);
+            case "failed":
+                return qsTr(ctx.appName + " blocking internet"); // TODO failed is not handed yet
+        }
+    }
+
+    property var icons: {
+        "off":     "qrc:/assets/icon/png/black/vpn_off.png",
+        "on":      "qrc:/assets/icon/png/black/vpn_on.png",
+        "wait":    "qrc:/assets/icon/png/black/vpn_wait_0.png",
+        "blocked": "qrc:/assets/icon/png/black/vpn_blocked.png",
+    }
+
+
     SystemTrayIcon {
 
         id: systray
         visible: true
         onActivated: {
-            console.debug("app is", ctx.applicationName)
+            console.debug("app is", ctx.appName)
             menu.open()
         }
 
@@ -57,7 +65,6 @@ ApplicationWindow {
             icon.source = icons["off"]
             tooltip = qsTr("Checking status...")
             console.debug("systray init completed")
-            appName = "RiseupVPN"; // TODO get it from ctx when it's available
             show();
         }
 
@@ -70,18 +77,18 @@ ApplicationWindow {
                     State { name: "initializing" },
                     State {
                         name: "off"
-                        PropertyChanges { target: systray; tooltip: toHuman["off"]; icon.source: icons["off"] }
-                        PropertyChanges { target: statusItem; text: toHuman["off"] }
+                        PropertyChanges { target: systray; tooltip: toHuman("off"); icon.source: icons["off"] }
+                        PropertyChanges { target: statusItem; text: toHuman("off") }
                     },
                     State {
                         name: "on"
-                        PropertyChanges { target: systray; tooltip: toHuman["on"]; icon.source: icons["on"] }
-                        PropertyChanges { target: statusItem; text: toHuman["on"] }
+                        PropertyChanges { target: systray; tooltip: toHuman("on"); icon.source: icons["on"] }
+                        PropertyChanges { target: statusItem; text: toHuman("on") }
                     },
                     State {
                         name: "starting"
-                       PropertyChanges { target: systray; tooltip: toHuman["connecting"]; icon.source: icons["wait"] }
-                        PropertyChanges { target: statusItem; text: toHuman["connecting"] }
+                       PropertyChanges { target: systray; tooltip: toHuman("connecting"); icon.source: icons["wait"] }
+                        PropertyChanges { target: statusItem; text: toHuman("connecting") }
                     },
                     State {
                         name: "stopping"
