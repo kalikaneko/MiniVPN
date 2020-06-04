@@ -19,6 +19,21 @@ ApplicationWindow {
         }
     }
 
+    property var icons: {
+        "off":     "qrc:/assets/icon/png/black/vpn_off.png",
+        "on":      "qrc:/assets/icon/png/black/vpn_on.png",
+        "wait":    "qrc:/assets/icon/png/black/vpn_wait_0.png",
+        "blocked": "qrc:/assets/icon/png/black/vpn_blocked.png",
+    }
+
+    property var toHuman: {
+        "off":        qsTr(appName + " off", appName), // TODO improve string interpolation, give context to translators etc
+        "on":         qsTr(appName + " on"),
+        "connecting": qsTr("Connecting to " + appName),
+        "stopping":   qsTr("Stopping " + appName),
+        "failed":     qsTr(appName + " blocking internet"), // TODO failed is not handed yet
+    }
+
     Component.onCompleted: {
         /* stupid as it sounds, windows doesn't like to have the systray icon
          not being attached to an actual application window.
@@ -33,13 +48,16 @@ ApplicationWindow {
 
         id: systray
         visible: true
-        onActivated: menu.open()
+        onActivated: {
+            console.debug("app is", ctx.applicationName)
+            menu.open()
+        }
 
         Component.onCompleted: {
-            icon.source = "qrc:/assets/vpn-off.png"
+            icon.source = icons["off"]
             tooltip = qsTr("Checking status...")
             console.debug("systray init completed")
-            appName = "RiseupVPN"; // TODO get it from ctx
+            appName = "RiseupVPN"; // TODO get it from ctx when it's available
             show();
         }
 
@@ -52,28 +70,28 @@ ApplicationWindow {
                     State { name: "initializing" },
                     State {
                         name: "off"
-                        PropertyChanges { target: systray; tooltip: qsTr(appName + " off"); icon.source: "qrc:/assets/vpn-off.png" }
-                        PropertyChanges { target: statusItem; text: qsTr(appName + " off") }
+                        PropertyChanges { target: systray; tooltip: toHuman["off"]; icon.source: icons["off"] }
+                        PropertyChanges { target: statusItem; text: toHuman["off"] }
                     },
                     State {
                         name: "on"
-                        PropertyChanges { target: systray; tooltip: qsTr("RiseupVPN on"); icon.source: "qrc:/assets/vpn-on.svg" }
-                        PropertyChanges { target: statusItem; text: qsTr("RiseupVPN on") }
+                        PropertyChanges { target: systray; tooltip: toHuman["on"]; icon.source: icons["on"] }
+                        PropertyChanges { target: statusItem; text: toHuman["on"] }
                     },
                     State {
                         name: "starting"
-                       PropertyChanges { target: systray; tooltip: qsTr("Connecting to RiseupVPN"); icon.source: "qrc:/assets/vpn-wait.svg" }
-                        PropertyChanges { target: statusItem; text: qsTr("Connecting to RiseupVPN") }
+                       PropertyChanges { target: systray; tooltip: toHuman["connecting"]; icon.source: icons["wait"] }
+                        PropertyChanges { target: statusItem; text: toHuman["connecting"] }
                     },
                     State {
                         name: "stopping"
-                        PropertyChanges { target: systray; tooltip: qsTr("Stopping RiseupVPN"); icon.source: "qrc:/assets/vpn-wait.svg" }
-                        PropertyChanges { target: statusItem; text: qsTr("Stopping RiseupVPN") }
+                        PropertyChanges { target: systray; tooltip: toHuman["stopping"]; icon.source: icons["wait"] }
+                        PropertyChanges { target: statusItem; text: toHuman["stopping"] }
                     },
                     State {
                         name: "failed"
-                        PropertyChanges { target: systray; tooltip: qsTr("RiseupVPN blocking internet"); icon.source: "qrc:/assets/vpn-blocked.svg" }
-                        PropertyChanges { target: statusItem; text: qsTr("RiseupVPN blocking internet") }
+                        PropertyChanges { target: systray; tooltip: toHuman["failed"]; icon.source: icons["wait"] }
+                        PropertyChanges { target: statusItem; text: toHuman["failed"] }
                     }
                 ]
             }
